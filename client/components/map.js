@@ -8,9 +8,9 @@ class Map extends Component {
   constructor() {
     super()
     this.state = {
-      lng: 5,
-      lat: 34,
-      zoom: 3
+      lng: -100,
+      lat: 40,
+      zoom: 4.0
     };
   }
   componentDidMount() {

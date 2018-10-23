@@ -15,8 +15,8 @@ class App extends React.Component {
     try {
       this.setState({loading: true})
       const { data } = await axios.get('/api/jobs')
-      this.setState({ jobs: data.results})
-      console.log(data.results)
+      this.setState({ jobs: data})
+      console.log(data)
     } catch(err) {
       console.log(err)
     }
