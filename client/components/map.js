@@ -10,7 +10,7 @@ class Map extends Component {
     this.state = {
       lng: 5,
       lat: 34,
-      zoom: 1.5
+      zoom: 3
     };
   }
   componentDidMount() {
@@ -39,21 +39,20 @@ class Map extends Component {
   }
   render() {
 
-    // const style = {
-    //   position: 'absolute',
-    //   top: 0,
-    //   bottom: 0,
-    //   width: '100%'
-    // };
+    const style = {
+      width: '100%',
+      height: '500px',
+      display: 'block'
+    };
 
     const { lng, lat, zoom } = this.state;
 
     return (
       <div>
-        <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 py6 px12 round-full txt-s txt-bold">
+        <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 ">
           <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
         </div>
-        <div ref={el => this.mapContainer = el} className="absolute top right left bottom" />
+        <div style={style} ref={el => this.mapContainer = el}/>
       </div>
     );
   }
