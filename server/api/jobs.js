@@ -1,9 +1,16 @@
 const router = require('express').Router()
 const {User} = require('../db/models')
 const themuse = require('../remotes/themuse');
+const utils = require('../utils');
+const Bluebird = require('bluebird');
 
 module.exports = router
 
 router.get('/', async (req, res, next) => {
-  res.json([themuse.loadSoftwareRoles()]);
+  return Bluebird.resolve()
+    .then(() => {
+      let roles = themuse.loadRoles();
+      res.json(roles);
+    })
+    .catch(next)
 })
