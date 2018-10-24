@@ -1,22 +1,24 @@
 import React from 'react'
 import axios from 'axios'
+import _ from 'lodash'
 
 import {Search, Map} from './components'
 // import Routes from './routes'
 
 class App extends React.Component {
   state = {
-    jobs: [],
-    loading: false
+    jobs: []
   }
+
 
   // later get from search bar
   async componentDidMount() {
     try {
       this.setState({loading: true})
       const { data } = await axios.get('/api/jobs')
-      this.setState({ jobs: data})
-      console.log(data)
+      const grouped = _.groupBy(data, (elem) => elem.location.coordinates)
+      console.log(grouped)
+      this.setState({ jobs: grouped})
     } catch(err) {
       console.log(err)
     }
