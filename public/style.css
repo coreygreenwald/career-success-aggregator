@@ -1,5 +1,6 @@
 body {
   font-family: sans-serif;
+  background-color: #BBBBBB;
 }
 
 a {
@@ -18,4 +19,32 @@ nav a {
 form div {
   margin: 1em;
   display: inline-block;
+}
+
+.marker {
+  background-image: url('http://i.imgur.com/WbMOfMl.png');
+  background-size: cover;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+
+.marker-small {
+  background-image: url('http://i.imgur.com/WbMOfMl.png');
+  background-size: cover;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.marker-large {
+  background-image: url('http://i.imgur.com/WbMOfMl.png');
+  background-size: cover;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
 }
