@@ -22,26 +22,50 @@ google.auth.getApplicationDefault((err, authClient) => {
     auth: authClient
   });
 
-  const request = {
-    parent: `projects/hack-the-stack`,
+  // const requestMetadata = {
+  //   userId: 'HashedUserId',
+  //   sessionId: 'HashedSessionId'
+  // }
+
+  const requestMetadata = {
+    "domain": "UNKNOWN",
+    "sessionId": "UNKNOWN",
+    "userId": "UNKNOWN",
+  }
+
+  const options = {
+    searchMode: 'JOB_SEARCH',
+    // requestMetadata: requestMetadata,
+    // jobQuery: {
+    //   query: 'Software Engineer'
+    // },
+    requestMetadata: requestMetadata,
+    // jobQuery: { query: 'Software Engineer' },
   };
 
+  const pathParams = {parent: `projects/*`}
+
+
   // Lists companies
-  jobService.projects.companies.list(request, function (err, result) {
-    if (err) {
-      console.error('Failed to retrieve companies! ' + err);
-      throw err;
+  jobService.projects.jobs.search(pathParams, options,(err, result) => {
+    if(err){
+      console.log('ERROR', err);
     }
-    console.log(`Request ID: ${result.data.metadata.requestId}`);
+    console.log(result);
+    // if (err) {
+    //   console.error('Failed to retrieve companies! ' + err);
+    //   throw err;
+    // }
+    // console.log(`Request ID: ${result.data.metadata.requestId}`);
 
-    const companies = result.data.companies || [];
+    // const companies = result.data.companies || [];
 
-    if (companies.length) {
-      console.log('Companies:');
-      companies.forEach((company) => console.log(company.name));
-    } else {
-      console.log(`No companies found.`);
-    }
+    // if (companies.length) {
+    //   console.log('Companies:');
+    //   companies.forEach((company) => console.log(company.name));
+    // } else {
+    //   console.log(`No companies found.`);
+    // }
   });
 });
 
