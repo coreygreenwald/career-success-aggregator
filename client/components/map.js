@@ -18,7 +18,7 @@ class Map extends Component {
 
     const map = new mapboxgl.Map({
       container: this.mapContainer,
-      style: 'mapbox://styles/mapbox/streets-v9',
+      style: 'mapbox://styles/mapbox/streets-v10',
       center: [lng, lat],
       zoom
     });
@@ -45,7 +45,7 @@ class Map extends Component {
 
     const style = {
       width: '100%',
-      height: '500px',
+      height: '100vh',
       display: 'block'
     };
 
@@ -55,8 +55,8 @@ class Map extends Component {
 
     for (let k in jobs){
       let coords = JSON.parse(`[${k}]`);
-      coords = [coords[1], coords[0]]
-      //let job = jobs[k];
+      console.log(coords, 'number: ', jobs[k].length)
+      coords = new mapboxgl.LngLat(coords[1], coords[0])
       var el = document.createElement('div');
       el.className = 'marker';
       try {
