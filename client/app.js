@@ -31,7 +31,7 @@ class App extends React.Component {
     return (
       <div>
         {/* <Navbar /> */}
-        <Search />
+        {/* <Search /> */}
         <Map {...this.state}/>
       </div>
     )

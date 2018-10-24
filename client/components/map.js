@@ -55,17 +55,32 @@ class Map extends Component {
 
     for (let k in jobs){
       let coords = JSON.parse(`[${k}]`);
-      console.log(coords, 'number: ', jobs[k].length)
-      coords = new mapboxgl.LngLat(coords[1], coords[0])
+
+      let url = jobs[k][0].refs.landing_page;
+      let numJobs = jobs[k].length;
+      // console.log(coords, 'number: ', jobs[k].length)
+      let lat = Number(coords[0]);
+      let lng = Number(coords[1]);
+      // console.log(lat, lng);
+      coords = new mapboxgl.LngLat(lng,lat + 30)
       var el = document.createElement('div');
-      el.className = 'marker';
+      if(numJobs < 5){
+        el.className = 'marker-small';
+      } else if(numJobs < 20){
+        el.className = 'marker';
+      } else {
+        el.className = 'marker-large';
+      }
       try {
         new mapboxgl.Marker(el)
         .setLngLat(coords)
+        .setPopup(new mapboxgl.Popup({offset: 25})
+        .setHTML('<h1> HI  WHERE IS THIS ????</h1>'))
         .addTo(this.state.map);
       } catch(err) {
         console.log(err)
       }
+      // }
     }
 
     //job[0].location.coordinates
@@ -91,7 +106,7 @@ class Map extends Component {
     return (
       <div>
         <div className="inline-block absolute top left mt12 ml12 bg-darken75 color-white z1 ">
-          <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div>
+          {/* <div>{`Longitude: ${lng} Latitude: ${lat} Zoom: ${zoom}`}</div> */}
         </div>
         <div style={style} ref={el => this.mapContainer = el}/>
       </div>
