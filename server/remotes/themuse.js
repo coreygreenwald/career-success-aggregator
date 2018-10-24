@@ -21,7 +21,7 @@ module.exports = {
   loadLocations() {
     let roles = JSON.parse(fs.readFileSync('./initial.json', 'utf8'));
 
-    roles = roles.filter(r => _.get(r, 'locations[0].name', '').includes(',')).filter(r => r.name.toLowerCase().includes('software'));
+    roles = roles.filter(r => _.get(r, 'locations[0].name', '').includes(',')).filter(r => r.name.toLowerCase().includes('software') || r.name.toLowerCase().includes('developer'));
     console.log('got the roles')
     let grouping = _.groupBy(roles, 'locations[0].name');
     console.log('got the grouping')
